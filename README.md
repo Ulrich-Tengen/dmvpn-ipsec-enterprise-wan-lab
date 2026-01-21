@@ -40,7 +40,7 @@ The topology consists of:
 - **GRE over IPsec tunnels** – securing all traffic
 
 📐 **Topology Diagram:**  
-![DMVPN Topology](diagrams/dmvpn-topology.jpg)
+![DMVPN Topology](diagrams/dmvpn-topology.JPG)
 
 ---
 
