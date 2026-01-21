@@ -1,1 +1,43 @@
 Hub 1 configuration
+
+hostname HUB1 
+crypto isakmp policy 1 
+encryption aes 256 
+hash sha512 
+authentication pre-share 
+group 16 
+crypto isakmp key Cisco!23 address 0.0.0.0 
+crypto ipsec transform-set dobre-SET esp-aes 256 esp-sha512-hmac 
+mode transport 
+crypto ipsec profile MY-IPSEC-PROFILE 
+set transform-set dobre-SET 
+! 
+! 
+interface Tunnel0 
+description DMVPN PRIMARY HUB 
+ip address 172.16.123.1 255.255.255.0 
+no ip redirects 
+ip mtu 1400 
+no ip next-hop-self eigrp 1 
+no ip split-horizon eigrp 1 
+ip nhrp authentication cisco!23 
+ip nhrp network-id 123 
+ip nhrp redirect 
+ip tcp adjust-mss 1360 
+delay 10000 
+tunnel source GigabitEthernet0/0 
+tunnel mode gre multipoint 
+tunnel key 6785 
+tunnel protection ipsec profile MY-IPSEC-PROFILE 
+interface GigabitEthernet0/0 
+ip address 51.1.1.2 255.255.255.0 
+duplex auto 
+speed auto 
+media-type rj45 
+! 
+! 
+router eigrp 1 
+network 10.0.0.0 
+network 172.16.123.0 0.0.0.255 
+! 
+ip route 0.0.0.0 0.0.0.0 51.1.1.5 
