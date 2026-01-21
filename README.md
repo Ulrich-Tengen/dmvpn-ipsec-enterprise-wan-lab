@@ -69,7 +69,7 @@ Connectivity and control-plane behavior were verified using standard IOS command
 - IPsec Security Association validation
 - End-to-end traffic testing between sites
 
-Verification outputs are included in the `verification/` directory.
+Verification outputs are included in the (verification/) directory.
 
 ---
 
