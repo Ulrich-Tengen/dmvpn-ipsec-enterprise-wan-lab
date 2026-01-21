@@ -1,1 +1,53 @@
-
+hostname SPOKE3 
+crypto isakmp policy 1 
+encr aes 256 
+hash sha512 
+authentication pre-share 
+group 16 
+crypto isakmp key Cisco!23 address 0.0.0.0 
+! 
+crypto ipsec transform-set dobre-SET esp-aes 256 esp-sha512-hmac 
+mode transport 
+! 
+crypto ipsec profile MY-IPSEC-PROFILE 
+set transform-set dobre-SET 
+! 
+interface Tunnel0 
+description DMVPN SPOKE 3 
+ip address 172.16.123.13 255.255.255.0 
+no ip redirects 
+ip mtu 1400 
+ip nhrp authentication cisco!23 
+ip nhrp map multicast 51.1.1.2 
+ip nhrp map 172.16.123.1 51.1.1.2 
+ip nhrp network-id 123 
+ip nhrp nhs 172.16.123.1 priority 1 
+ip nhrp nhs 172.16.123.2 priority 2 
+ip nhrp nhs 172.16.123.3 priority 3 
+ip tcp adjust-mss 1360 
+tunnel source GigabitEthernet0/0 
+tunnel mode gre multipoint 
+tunnel key 6785 
+tunnel protection ipsec profile MY-IPSEC-PROFILE 
+! 
+interface GigabitEthernet0/0 
+ip address 192.0.2.1 255.255.255.0 
+duplex auto 
+speed auto 
+! 
+interface GigabitEthernet0/1 
+ip address 10.3.0.1 255.255.255.0 
+duplex auto 
+speed auto 
+! 
+interface GigabitEthernet0/2 
+ip address 10.4.0.2 255.255.255.0 
+duplex auto 
+speed auto 
+! 
+router eigrp 1 
+network 10.0.0.0 
+network 172.16.123.0 0.0.0.255 
+! 
+ip route 25.2.2.0 255.255.255.252 192.0.2.2 
+ip route 51.1.1.0 255.255.255.0 192.0.2.2
