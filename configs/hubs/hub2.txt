@@ -1,1 +1,27 @@
 Hub 2 configuration
+
+hostname HUB2 
+interface Tunnel0 
+description DMVPN SECONDARY HUB 
+ip address 172.16.123.2 255.255.255.0 
+no ip redirects 
+ip mtu 1400 
+ip nhrp authentication cisco!23 
+ip nhrp network-id 123 
+ip nhrp redirect 
+ip tcp adjust-mss 1360 
+tunnel source GigabitEthernet0/0 
+tunnel mode gre multipoint 
+tunnel key 6785 
+! 
+interface GigabitEthernet0/0 
+ip address 51.1.1.1 255.255.255.0 
+duplex auto 
+speed auto 
+media-type rj45 
+! 
+router eigrp 1 
+network 10.0.0.0 
+network 172.16.123.0 0.0.0.255 
+! 
+ip route 0.0.0.0 0.0.0.0 51.1.1.5 
