@@ -102,14 +102,14 @@ dmvpn-ipsec-enterprise-wan-lab/
 │
 ├── README.md
 ├── diagrams/
-│ └── dmvpn-topology.png
+│ └── dmvpn-topology.JPG
 ├── configs/
 │ ├── hubs/
 │ └── spokes/
 ├── verification/
-│ └── verification-outputs.txt
+│ └── Screenshots
 └── docs/
-└── full-lab-documentation.md
+└── DMVPN with IPsec_documentation.pdf
 
 
 ---
