@@ -136,3 +136,5 @@ It demonstrates not only the ability to configure complex technologies, but also
 Network Security Engineer | Enterprise WAN | Cisco Technologies  
 
 Open to opportunities, mentorship, and technical discussions.
+LinkedIn: www.linkedin.com/in/mbahulrich
+Email: mbah.ulrich01@gmail.com
